@@ -1,0 +1,30 @@
+import math
+
+
+freq = float(input("Frequência (Hz): "))
+resistor = float(input("Resistência (ohms): "))
+capacitor = float(input("Capacitância (F): "))
+indutor = float(input("Indutância (H): "))
+
+
+rc = 1 / (2 * math.pi * freq * capacitor)
+rb = 2 * math.pi * freq * indutor
+
+
+z = math.sqrt((resistor ** 2) + ((rb - rc) ** 2))
+
+
+print("\nRELATÓRIO DO CIRCUITO\n")
+print(f"Frequência: {freq} Hz")
+print(f"Resistência do Resistor: {resistor} ohms")
+print(f"Reatância do Capacitor: {rc} ohms")
+print(f"Reatância da Bobina: {rb} ohms")
+print(f"Impedância Total: {z} ohms")
+
+with open("relatorio_circuito.txt", mode="w", encoding='utf-8', newline='') as relatorio_circuito:
+    relatorio_circuito.write(f"Relatório Completo\n\n")
+    relatorio_circuito.write(f"A Frequência é: {freq:.2f}Hz\n")
+    relatorio_circuito.write(f"A Resistêcia é: {resistor:.2f}ohms\n")
+    relatorio_circuito.write(f"A Reatância do Capacitor é: {rc:.2f}ohms\n")
+    relatorio_circuito.write(f"A Reatância da Bobina é: {rb:.2f}ohms\n")
+    relatorio_circuito.write(f"A Impedância Total é: {z:.2f}ohms")
